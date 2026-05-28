@@ -1,0 +1,41 @@
+{
+  "status": "pending-live-deployment",
+  "network": {
+    "name": "X Layer Testnet",
+    "chainId": 1952,
+    "rpcUrl": "https://testrpc.xlayer.tech/terigon",
+    "explorer": "https://www.oklink.com/xlayer-test"
+  },
+  "uniswapV4": {
+    "poolManager": "0x360E68Faccca8cA495c1B759Fd9EEe466db9FB32"
+  },
+  "create2": {
+    "deployer": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+    "requiredHookBits": "0x06c0",
+    "contractName": "PulseHookV4",
+    "candidateSalt": "0x000000000000000000000000000000000000000000000000000000000000278c",
+    "candidateSaltDecimal": "10124",
+    "candidateHookAddress": "0x0f307dc905592fbef047b8dddcc50f9415b286c0",
+    "initCodeHash": "0x02d7d90fec3bbb7b088690e2ccd44ce0d54ff876a61abfec24c49f8744ec454e"
+  },
+  "evidenceToFillAfterDeployment": {
+    "hookAddress": "",
+    "verifiedSourceUrl": "",
+    "poolKey": {
+      "currency0": "",
+      "currency1": "",
+      "fee": "",
+      "tickSpacing": "",
+      "hooks": ""
+    },
+    "poolCreationTx": "",
+    "addLiquidityTx": "",
+    "normalSwapTx": "",
+    "volatileSwapTx": "",
+    "demoUrl": "",
+    "demoVideoUrl": "",
+    "xAccount": "",
+    "finalXPostUrl": "",
+    "googleFormSubmittedAtUtc": ""
+  }
+}

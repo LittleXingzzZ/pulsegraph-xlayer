@@ -1,0 +1,58 @@
+[
+  {
+    "type": "function",
+    "name": "previewFee",
+    "stateMutability": "view",
+    "inputs": [
+      {
+        "name": "key",
+        "type": "tuple",
+        "components": [
+          { "name": "currency0", "type": "address" },
+          { "name": "currency1", "type": "address" },
+          { "name": "fee", "type": "uint24" },
+          { "name": "tickSpacing", "type": "int24" },
+          { "name": "hooks", "type": "address" }
+        ]
+      }
+    ],
+    "outputs": [
+      { "name": "feePips", "type": "uint24" },
+      { "name": "feeWithOverrideFlag", "type": "uint24" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getPoolTelemetry",
+    "stateMutability": "view",
+    "inputs": [
+      {
+        "name": "key",
+        "type": "tuple",
+        "components": [
+          { "name": "currency0", "type": "address" },
+          { "name": "currency1", "type": "address" },
+          { "name": "fee", "type": "uint24" },
+          { "name": "tickSpacing", "type": "int24" },
+          { "name": "hooks", "type": "address" }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "telemetry",
+        "type": "tuple",
+        "components": [
+          { "name": "lastBlock", "type": "uint256" },
+          { "name": "emaNotional", "type": "uint256" },
+          { "name": "pressureBps", "type": "uint256" },
+          { "name": "currentFeePips", "type": "uint24" },
+          { "name": "swapCount", "type": "uint256" },
+          { "name": "lastSwapAt", "type": "uint256" },
+          { "name": "signedFlow", "type": "int256" },
+          { "name": "lastZeroForOne", "type": "bool" }
+        ]
+      }
+    ]
+  }
+]

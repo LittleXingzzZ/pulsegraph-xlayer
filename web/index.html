@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="PulseGraph — Pool Vital Signs Protocol for Uniswap v4 on X Layer. Live on-chain vitals for every pool."
+    />
+    <title>PulseGraph · Pool Vital Signs · X Layer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;1,400;1,500&display=swap"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="PulseGraph">
+        <span class="brand-mark">P</span>
+        <span class="brand-label">PulseGraph</span>
+        <span class="brand-sub">/ Pool Vital Signs · X Layer 196</span>
+      </a>
+      <span class="live-pill" id="livePill" data-state="connecting" aria-live="polite">
+        <span class="live-dot"></span>
+        <span class="live-meta">LIVE · X LAYER · BLOCK</span>
+        <span class="live-block" id="liveBlock">connecting…</span>
+      </span>
+      <div class="wallet-group">
+        <button class="wallet-button" id="connectWallet" type="button">
+          <span aria-hidden="true">◆</span>
+          <span id="walletLabel">Connect wallet</span>
+        </button>
+        <button class="chain-badge" id="chainBadge" type="button" hidden></button>
+      </div>
+    </header>
+    <p class="wallet-error" id="walletError" role="alert" hidden></p>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-text">
+          <span class="kicker">Pool Vital Signs Protocol · Uniswap v4</span>
+          <h1>
+            Every pool has a
+            <em>heartbeat.</em>
+            Now you can read it.
+            <span class="micro">
+              One 0–100 Pulse Index per pool, derived from four Uniswap v4 lifecycle callbacks,
+              read live from a deployed Hook on X Layer mainnet — so wallets, launchpads, and
+              Exchange OS markets can tell health from fragility without ever blocking a trade.
+            </span>
+          </h1>
+          <div class="hero-cta">
+            <button class="btn btn-primary" id="sendRealSwap" type="button" title="Send a real on-chain swap from your wallet">
+              <span class="btn-icon" aria-hidden="true">↯</span>
+              Send real swap
+            </button>
+            <button class="btn btn-primary btn-danger" id="sendRealVolatileSwap" type="button" title="Send a larger real on-chain swap that spikes pressure">
+              <span class="btn-icon" aria-hidden="true">⚡</span>
+              Send volatile swap
+            </button>
+            <button class="btn btn-primary" id="sendRealAddLiquidity" type="button" title="Add sticky liquidity on-chain via your wallet">
+              <span class="btn-icon" aria-hidden="true">＋</span>
+              Add real LP
+            </button>
+            <button class="btn btn-secondary" id="switchNetwork" type="button">
+              <span class="btn-icon" aria-hidden="true">◇</span>
+              Add / switch to X Layer
+            </button>
+          </div>
+          <div class="hero-cta hero-cta-secondary">
+            <span class="cta-divider">Preview (UI only — does not send tx):</span>
+            <button class="btn btn-ghost" id="simulateSwap" type="button">Preview swap</button>
+            <button class="btn btn-ghost" id="simulateLiquidity" type="button">Preview LP</button>
+            <button class="btn btn-ghost" id="simulateEarlyExit" type="button">Preview early exit</button>
+            <button class="btn btn-ghost" id="clearSim" type="button" disabled>Clear sim overlay</button>
+          </div>
+          <dl class="hero-meta">
+            <div>
+              <dt>Hook contract</dt>
+              <dd>
+                <a id="hookAddressLink" href="#" target="_blank" rel="noreferrer">
+                  0x0f30…86c0
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>PoolManager</dt>
+              <dd>0x360e…fb32</dd>
+            </div>
+            <div>
+              <dt>CREATE2 salt</dt>
+              <dd>0x…278c · bits 0x06c0</dd>
+            </div>
+            <div>
+              <dt>Permission bits</dt>
+              <dd>beforeSwap · afterSwap · afterAddLiquidity · beforeRemoveLiquidity</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="monitor" aria-label="Pool vital signs monitor">
+          <div class="monitor-corners"></div>
+          <header class="monitor-header">
+            <span>
+              <strong>PulseGraph MON-01</strong>
+            </span>
+            <span class="pool-id" id="poolIdReadout">POOL 0x8fd8…39c0</span>
+            <span class="timestamp" id="monitorTimestamp">— —</span>
+          </header>
+
+          <div class="monitor-canvas">
+            <canvas id="pulseCanvas" width="900" height="380"></canvas>
+          </div>
+
+          <div class="monitor-vitals">
+            <div class="vital" data-tone="vital">
+              <span class="vital-label">Heart Rate</span>
+              <strong class="vital-value" id="feeValue">0.30%</strong>
+              <span class="vital-sub">beforeSwap fee</span>
+              <span class="vital-sim" id="feeSim"></span>
+            </div>
+            <div class="vital" data-tone="warn">
+              <span class="vital-label">Blood Pressure</span>
+              <strong class="vital-value" id="pressureValue">0 bps</strong>
+              <span class="vital-sub">afterSwap pressure</span>
+              <span class="vital-sim" id="pressureSim"></span>
+            </div>
+            <div class="vital" data-tone="calm">
+              <span class="vital-label">Immunity</span>
+              <strong class="vital-value" id="scoreValue">0</strong>
+              <span class="vital-sub">sticky LP score</span>
+              <span class="vital-sim" id="scoreSim"></span>
+            </div>
+            <div class="vital" data-tone="alarm">
+              <span class="vital-label">Stress Signal</span>
+              <strong class="vital-value" id="exitValue">0</strong>
+              <span class="vital-sub">early exits</span>
+              <span class="vital-sim" id="exitSim"></span>
+            </div>
+          </div>
+          <div class="sim-banner" id="simBanner" data-active="no">
+            <span>SIM OVERLAY ACTIVE — live values still shown above</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="pulse-section">
+        <div class="pulse-section-grid">
+          <div class="pulse-massive">
+            <span class="number" id="pulseIndex" data-phase="healthy">100</span>
+            <span class="denom">/ 100</span>
+          </div>
+          <div class="pulse-side">
+            <span class="phase-chip" id="pulsePhase" data-phase="healthy">Healthy</span>
+            <p class="pulse-explainer">
+              <strong>Pulse Index</strong> is the composite health score for this live pool,
+              recomputed every block from on-chain pressure, sticky-LP score, swap activity,
+              and early-exit count — never derived from synthetic data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="tape" aria-label="Live event tape">
+        <div class="tape-rail" id="tapeRail">
+          <span>● <strong>LIVE</strong> · awaiting block …</span>
+        </div>
+      </section>
+
+      <section class="section" id="evidence">
+        <header class="section-head">
+          <h2>/02 On-chain<br /><em>evidence.</em></h2>
+          <p class="lede">
+            Four transactions on X Layer mainnet prove the Hook is live and the
+            callback surface is doing real work. Every card below reads its
+            <strong>blockNumber</strong>, <strong>timestamp</strong>, and decoded event
+            payload directly from <strong>rpc.xlayer.tech</strong>.
+          </p>
+        </header>
+        <div class="evidence-grid" id="evidenceGrid"></div>
+      </section>
+
+      <section class="callbacks" aria-label="Four callbacks">
+        <article class="callback">
+          <span class="callback-index">/03 · I</span>
+          <h3 class="callback-vital">Heart<br /><em>Rate</em></h3>
+          <p class="callback-fn">
+            <strong>beforeSwap</strong>
+            Returns the latest dynamic fee with the Uniswap v4 override flag.
+          </p>
+        </article>
+        <article class="callback">
+          <span class="callback-index">/03 · II</span>
+          <h3 class="callback-vital">Blood<br /><em>Pressure</em></h3>
+          <p class="callback-fn">
+            <strong>afterSwap</strong>
+            Updates per-pool pressure from exponential notional and signed flow.
+          </p>
+        </article>
+        <article class="callback">
+          <span class="callback-index">/03 · III</span>
+          <h3 class="callback-vital">Immune<br /><em>Response</em></h3>
+          <p class="callback-fn">
+            <strong>afterAddLiquidity</strong>
+            Scores LP deposits — stressed pools earn a lower sticky multiplier.
+          </p>
+        </article>
+        <article class="callback">
+          <span class="callback-index">/03 · IV</span>
+          <h3 class="callback-vital">Stress<br /><em>Signal</em></h3>
+          <p class="callback-fn">
+            <strong>beforeRemoveLiquidity</strong>
+            Flags meaningful early exits — never blocks a withdrawal.
+          </p>
+        </article>
+      </section>
+
+      <section class="section" id="events">
+        <header class="section-head">
+          <h2>/04 Live<br /><em>events.</em></h2>
+          <p class="lede">
+            Real-time tail of <strong>PulseObserved</strong>, <strong>LiquidityScored</strong>,
+            and <strong>EarlyExitFlagged</strong> emissions, plus locally-injected
+            simulated events so you can poke the monitor.
+          </p>
+        </header>
+        <div class="live-events">
+          <ol class="event-list" id="eventList"></ol>
+          <ol class="event-list" id="historicList"></ol>
+        </div>
+        <p id="hookStatus" class="kicker" style="margin-top: 32px;">Booting Pool Vital Signs Monitor…</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span class="brand-label">PULSEGRAPH · POOL VITAL SIGNS</span>
+      <span>X Layer mainnet · chainId 196 · PoolManager 0x360e68…fb32</span>
+      <a href="https://github.com/LittleXingzzZ/pulsegraph-xlayer" target="_blank" rel="noreferrer">github →</a>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

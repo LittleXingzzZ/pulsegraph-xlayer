@@ -1,0 +1,12 @@
+[profile.default]
+src = "contracts"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.26"
+optimizer = true
+optimizer_runs = 20_000
+via_ir = true
+
+[rpc_endpoints]
+xlayer = "https://rpc.xlayer.tech"
+xlayer_testnet = "https://testrpc.xlayer.tech/terigon"

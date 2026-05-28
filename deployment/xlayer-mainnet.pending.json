@@ -1,0 +1,83 @@
+{
+  "status": "deployed-awaiting-external-links",
+  "network": {
+    "name": "X Layer Mainnet",
+    "chainId": 196,
+    "rpcUrl": "https://rpc.xlayer.tech",
+    "explorer": "https://www.oklink.com/xlayer"
+  },
+  "uniswapV4": {
+    "poolManager": "0x360e68faccca8ca495c1b759fd9eee466db9fb32",
+    "positionManager": "0xcf1eafc6928dc385a342e7c6491d371d2871458b",
+    "universalRouter": "0xda00ae15d3a71466517129255255db7c0c0956d3",
+    "universalRouter211": "0x8b844f885672f333bc0042cb669255f93a4c1e6b",
+    "quoter": "0x8928074ca1b241d8ec02815881c1af11e8bc5219",
+    "stateView": "0x76fd297e2d437cd7f76d50f01afe6160f86e9990",
+    "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3"
+  },
+  "create2": {
+    "deployer": "0x4e59b44847b379578588920ca78fbf26c0b4956c",
+    "requiredHookBits": "0x06c0",
+    "contractName": "PulseHookV4",
+    "candidateSalt": "0x000000000000000000000000000000000000000000000000000000000000278c",
+    "candidateSaltDecimal": "10124",
+    "candidateHookAddress": "0x0f307dc905592fbef047b8dddcc50f9415b286c0",
+    "initCodeHash": "0x02d7d90fec3bbb7b088690e2ccd44ce0d54ff876a61abfec24c49f8744ec454e"
+  },
+  "evidenceToFillAfterDeployment": {
+    "hookAddress": "0x0f307dc905592fbef047b8dddcc50f9415b286c0",
+    "hookDeploymentTx": "0x902348d2a953f4d3dcd0d4ab2259988cb5a0171551cbfe01ec253431127cf478",
+    "verifiedSourceUrl": "https://www.oklink.com/xlayer/address/0x0f307dc905592fbef047b8dddcc50f9415b286c0/contract",
+    "poolKey": {
+      "currency0": "0x0e31bE3F0C7389eDc2a43818a12652160D87DE8C",
+      "currency1": "0xfEd58B5147F754F93B43562DcDB30247cE642D98",
+      "fee": "8388608",
+      "tickSpacing": "60",
+      "hooks": "0x0F307DC905592FbEf047B8ddDcC50F9415B286C0"
+    },
+    "poolCreationTx": "0x77bc01a4f0bacc90d4cbac968c8ff09f5a69ae569965522fbfe6a5caac4fb780",
+    "demoExecutorAddress": "0x872d793708C03818f6FedcC10C176f6FAa550b76",
+    "demoExecutorDeploymentTx": "0xeb038b3ccec2869752938ce6d629a41479c02465be1daf1c26851604bf4f3d6c",
+    "addLiquidityTx": "0xe9a69e4a33cb589693a7ee64d1ad4b588a48c5b400ab072e5483d0e995c46b33",
+    "normalSwapTx": "0x6e01709628361f5bf79263eb9cd4cb89ee856010a9a7fec55952e1daa0762c22",
+    "volatileSwapTx": "0xf214c9cc7836c8d89028290aab96ce7c0d2901c68bb9960174deee9c41780c15",
+    "demoUrl": "https://littlexingzzz.github.io/pulsegraph-xlayer/",
+    "demoVideoUrl": "https://x.com/i/status/2060031496044581369",
+    "xAccount": "https://x.com/LittleXingzzZ",
+    "finalXPostUrl": "https://x.com/LittleXingzzZ/status/2060031496044581369",
+    "googleFormSubmittedAtUtc": "",
+    "hookAddressUrl": "https://www.oklink.com/xlayer/address/0x0f307dc905592fbef047b8dddcc50f9415b286c0",
+    "demoExecutorAddressUrl": "https://www.oklink.com/xlayer/address/0x872d793708C03818f6FedcC10C176f6FAa550b76",
+    "hookDeploymentTxUrl": "https://www.oklink.com/xlayer/tx/0x902348d2a953f4d3dcd0d4ab2259988cb5a0171551cbfe01ec253431127cf478",
+    "poolCreationTxUrl": "https://www.oklink.com/xlayer/tx/0x77bc01a4f0bacc90d4cbac968c8ff09f5a69ae569965522fbfe6a5caac4fb780",
+    "demoExecutorDeploymentTxUrl": "https://www.oklink.com/xlayer/tx/0xeb038b3ccec2869752938ce6d629a41479c02465be1daf1c26851604bf4f3d6c",
+    "addLiquidityTxUrl": "https://www.oklink.com/xlayer/tx/0xe9a69e4a33cb589693a7ee64d1ad4b588a48c5b400ab072e5483d0e995c46b33",
+    "normalSwapTxUrl": "https://www.oklink.com/xlayer/tx/0x6e01709628361f5bf79263eb9cd4cb89ee856010a9a7fec55952e1daa0762c22",
+    "volatileSwapTxUrl": "https://www.oklink.com/xlayer/tx/0xf214c9cc7836c8d89028290aab96ce7c0d2901c68bb9960174deee9c41780c15"
+  },
+  "publicExecutor": {
+    "address": "0xe52a5698e895DA113b217Bd8eBfF335e5635e900",
+    "deploymentTx": "0xfb927d4a515cb760434e1e29f3b05d07b1159f7b01d3962a8d89f23173b67e54",
+    "tokenA": "0xC36A61CFE3c55627818B6d8b1e39fe1135577fb3",
+    "tokenB": "0x77d43db8D43756763f0303Bb651d20aB8359541C",
+    "poolKey": {
+      "currency0": "0x77d43db8D43756763f0303Bb651d20aB8359541C",
+      "currency1": "0xC36A61CFE3c55627818B6d8b1e39fe1135577fb3",
+      "fee": 8388608,
+      "tickSpacing": 60,
+      "hooks": "0x0F307DC905592FbEf047B8ddDcC50F9415B286C0"
+    },
+    "poolId": "0x6afe92e268ea41202dbe8c218923338b6a7564961458f97e8a6ef02859b6213b",
+    "initTx": "0xe47ceb2b8468f6f6cedaf4b6abff1df5179acbe3e3da53be72e89534e8312cef",
+    "addLiquidityTx": "0x77dcf4a3b06db937331bc4c7f2b16d540b53f79f78a97460eaf02032dbd22c6e",
+    "initBlock": 61190789,
+    "addLiquidityBlock": 61190793,
+    "initialLiquidity": "1000000000000000000000",
+    "explorer": {
+      "address": "https://www.oklink.com/xlayer/address/0xe52a5698e895DA113b217Bd8eBfF335e5635e900",
+      "deploymentTx": "https://www.oklink.com/xlayer/tx/0xfb927d4a515cb760434e1e29f3b05d07b1159f7b01d3962a8d89f23173b67e54",
+      "initTx": "https://www.oklink.com/xlayer/tx/0xe47ceb2b8468f6f6cedaf4b6abff1df5179acbe3e3da53be72e89534e8312cef",
+      "addLiquidityTx": "https://www.oklink.com/xlayer/tx/0x77dcf4a3b06db937331bc4c7f2b16d540b53f79f78a97460eaf02032dbd22c6e"
+    }
+  }
+}

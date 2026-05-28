@@ -1,0 +1,28 @@
+node_modules/
+cache/
+out/
+broadcast/
+.env
+.DS_Store
+coverage/
+dist/
+
+# Local tooling artifacts (Playwright MCP session debug)
+.playwright-mcp/
+*.log
+
+# Internal contributor docs and Claude-specific aids — not part of the public submission
+CLAUDE.md
+.claude/
+docs/
+
+# Recording storyboard kept locally for video production; not shipped
+/web/video.html
+/web/video.css
+/web/video.js
+/web/assets/
+
+# Internal Google Form / packet helpers (manifest already has the canonical data)
+/scripts/final-form-packet.mjs
+/tests/demoVideoPage.test.mjs
+

@@ -1,0 +1,42 @@
+{
+  "name": "pulsegraph-xlayer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PulseGraph: Pool Vital Signs Protocol for Uniswap v4 on X Layer (Hook contract: PulseHookV4).",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "compile:contracts": "node scripts/compile-solidity.mjs",
+    "mine:hook": "node scripts/hook-miner.mjs",
+    "build:create2-calldata": "node scripts/create2-calldata.mjs",
+    "check:deployer": "node scripts/check-deployer.mjs",
+    "check:v4-deployments": "node scripts/xlayer-v4-deployments.mjs",
+    "deploy:hook": "node scripts/deploy-create2-hook.mjs",
+    "deploy:demo-executor": "node scripts/deploy-demo-executor.mjs",
+    "deploy:public-executor": "node scripts/deploy-public-demo-executor.mjs",
+    "run:demo-sequence": "node scripts/run-demo-sequence.mjs",
+    "submission:packet": "node scripts/submission-packet.mjs",
+    "readiness:audit": "node scripts/readiness-audit.mjs",
+    "verification:oklink": "node scripts/export-oklink-verification.mjs",
+    "release:guide": "node scripts/release-guide.mjs",
+    "manifest:update": "node scripts/update-manifest.mjs",
+    "validate": "node scripts/validate.mjs",
+    "check": "npm test && npm run compile:contracts && npm run validate",
+    "serve": "node scripts/serve.mjs"
+  },
+  "keywords": [
+    "uniswap-v4",
+    "x-layer",
+    "hook",
+    "hackathon",
+    "defi"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@uniswap/v4-core": "^1.0.2",
+    "@uniswap/v4-periphery": "^1.0.3",
+    "ethers": "^6.16.0",
+    "js-sha3": "^0.9.3",
+    "solc": "^0.8.35"
+  }
+}
